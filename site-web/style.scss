@@ -1,0 +1,135 @@
+//Variables couleurs
+$main-color: #9A8C98;
+$btn-color: #463a44;
+$btn-font-color: white;
+
+//Variables size img
+
+@mixin width-img{
+    width: 20em;
+}
+
+
+
+body{
+    margin: 3%; /* Utilisation de marges relatives */
+}
+.search-bar {
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+}
+
+.search-bar input[type="text"] {
+    padding: 0.5em; /* Utilisation de padding relatif */
+    border: 1px solid #ccc; /* Bordure grise */
+    border-radius: 0.4em; /* Coins arrondis */
+}
+
+.search-bar button {
+    padding: 0.5em 0.75em; /* Utilisation de padding relatif */
+    background-color: $btn-color; /* Couleur de fond du bouton */
+    color: $btn-font-color; /* Couleur du texte du bouton */
+    border: none; /* Pas de bordure */
+    border-radius: 0.4em; /* Coins arrondis */
+    margin-left: 1em; /* Espacement entre le champ de saisie et le bouton */
+}
+
+.header-title {
+    color: $btn-font-color;
+    font-size: larger;
+    background: $main-color;
+    border-radius: 2em;
+    padding: 2em;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    margin-right: 5%; /* Utilisation de marges relatives */
+    width: 10%; /* Utilisation de largeur relative */
+    height: auto;
+}
+
+
+h2{
+    font-size: xx-large;
+    text-align: center;
+
+}
+
+.best-film{
+    margin-left: 5%;
+    margin-right: 5%;
+    border: 0.4em solid #ccc; /* Utilisation de bordure relative */
+    border-radius: 1em;
+    padding: 2em;
+    margin-top: 2em;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto auto;
+    align-items: center;
+}
+
+.best-film img{
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    width: 18em; /* Utilisation de largeur relative */
+    height: auto;
+}
+
+.film-info{
+    grid-column: 2 / span 2;
+    grid-row: 1;
+    margin-top: 1em; /* Utilisation de marges relatives */
+}
+
+.film-info h3{
+    font-size: xx-large;
+    margin-bottom: 2em; /* Utilisation de marges relatives */
+}
+
+.film-info button{
+    font-size: 0.9em;
+    padding: 2em 3em; /* Utilisation de padding relatif */
+    background-color: $btn-color; /* Couleur de fond du bouton */
+    color: $btn-font-color; /* Couleur du texte du bouton */
+    border: none; /* Pas de bordure */
+    border-radius: 0.75em; /* Coins arrondis */
+    margin-top: 2em;
+    margin-left: 80%; /* Utilisation de marges relatives */
+}
+
+.grid-apreciate-film {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colonnes */
+    gap: 2em; /* Espacement entre les éléments de la grille */
+    margin: 3%; /* Utilisation de marges relatives */
+}
+
+.film{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.film img{
+    border: 1px solid #ccc;
+    border-radius: 0.8em; /* Coins arrondis */
+    width: 100%;
+    
+}
+
+.overlay {
+    position: absolute; /* Positionnement absolu pour superposer le div sur l'image */
+    bottom: 70%; /* Aligner le div en bas */
+    width: 100%; /* Prendre toute la largeur de l'image */
+    background-color: rgba(0, 0, 0, 0.3); /* Fond semi-transparent foncé */
+    padding: 10% 5%; /* Espacement intérieur du div */
+    box-sizing: border-box;
+}
+
+.overlay h3 {
+    color: white; /* Couleur du texte blanc */
+    margin: 0; /* Réinitialiser les marges */
+}

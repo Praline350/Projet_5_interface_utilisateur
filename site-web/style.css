@@ -1,124 +1,333 @@
-body{
-    margin: 50px;
-}
-.search-bar {
-    display: flex;
-    margin-left: auto;
-    align-items: center;
+@charset "UTF-8";
+
+body {
+  margin: 1.2em;
+  /* Utilisation de marges relatives */
 }
 
-.search-bar input[type="text"] {
-    padding: 8px;
-    border: 1px solid #ccc; /* Bordure grise */
-    border-radius: 4px; /* Coins arrondis */
-}
+.btn{
+  padding: 0.5em 0.75em;
+  background-color: #463a44;
+  color: white;
+  border: none;
+  border-radius: 0.4em;
+  margin-left: 1em;
 
-.search-bar button {
-    padding: 8px 12px;
-    background-color: #463a44; /* Couleur de fond du bouton */
-    color: white; /* Couleur du texte du bouton */
-    border: none; /* Pas de bordure */
-    border-radius: 4px; /* Coins arrondis */
-    margin-left: 10px; /* Espacement entre le champ de saisie et le bouton */
 }
 
 .header-title {
-    color: white;
-    font-size: larger;
-    background: #9A8C98;
-    border-radius: 20px;
-    padding: 20px;
-    display: flex;
-    align-items: center;
+  color: white;
+  font-size: larger;
+  background: #9A8C98;
+  border-radius: 2em;
+  padding: 2em;
+  display: flex;
+  align-items: center;
 }
 
-.logo {
-    margin-right: 100px;
-    width: 120px;
-    height: auto;
+.header-title__logo {
+  margin-right: 5%;
+  width: 10%;
+  height: auto;
 }
 
 
-h2{
-    font-size: xx-large;
-    text-align: center;
-
+.search-bar {
+  display: flex;
+  margin-left: auto;
+  align-items: center;
 }
 
-.best-film{
-    margin-left: 5%;
-    margin-right: 5%;
-    border: 4px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows: auto auto;
-    align-items: center;
+.search-bar__input {
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 0.4em;
 }
 
-.best-film img{
-    grid-column: 1;
-    grid-row: 1 / span 2;
-    width: 200px;
-    height: auto;
+
+h2 {
+  font-size: xx-large;
+  text-align: center;
 }
 
-.film-info{
-    grid-column: 2 / span 2;
-    grid-row: 1;
-    margin-top: 10px;
+.best-film {
+  position: relative;
+  margin-left: 5%;
+  margin-right: 5%;
+  border: 0.4em solid #ccc;
+  /* Utilisation de bordure relative */
+  border-radius: 1em;
+  padding: 2em;
+  margin-top: 1em;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto auto;
+  align-items: center;
 }
 
-.film-info h3{
-    font-size: xx-large;
-    margin-bottom: 40px;
+.best-film__img {
+  grid-column: 1;
+  grid-row: 1/span 2;
+  width: 15em;
+  margin-left: 1em;
+  /* Utilisation de largeur relative */
+  height: auto;
 }
 
-.film-info button{
-    font-size: 0.9em;
-    padding: 20px 30px;
-    background-color: #463a44; /* Couleur de fond du bouton */
-    color: white; /* Couleur du texte du bouton */
-    border: none; /* Pas de bordure */
-    border-radius: 15px; /* Coins arrondis */
-    margin-top: 20px;
-    margin-left: 80%;
+.film-info {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  grid-column: 2/span 2;
+  grid-row: 1;
+  margin-top: 1em;
+  margin-right: 3em;
+  /* Utilisation de marges relatives */
 }
+
+.film-info__h3 {
+  font-size: xx-large;
+  margin-bottom: 2em;
+  margin-top: 1em;
+  /* Utilisation de marges relatives */
+}
+
+#film-description{
+  margin-bottom: 4em;
+}
+
+.film-info__btn {
+  position: relative;
+  font-size: 0.9em;
+  padding: 1em 2em;
+  margin-bottom: 1em;
+  margin-top: 3em;
+  margin-left: 45em;
+  /* Utilisation de marges relatives */
+}
+
+
 
 .grid-apreciate-film {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colonnes */
-    gap: 20px; /* Espacement entre les éléments de la grille */
-    margin: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* 3 colonnes */
+  gap: 2em;
+  /* Espacement entre les éléments de la grille */
+  margin: 3%;
+  /* Utilisation de marges relatives */
 }
 
-.film{
-    position: relative;
-    display: flex;
-    justify-content: center;
+.grid-apreciate-film__category{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* 3 colonnes */
+  gap: 2em;
+  /* Espacement entre les éléments de la grille */
+  margin: 3%;
+  /* Utilisation de marges relatives */
 }
 
-.film img{
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    width: 100%;
-    
+.grid-apreciate-film__category2{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* 3 colonnes */
+  gap: 2em;
+  /* Espacement entre les éléments de la grille */
+  margin: 3%;
+  /* Utilisation de marges relatives */
 }
+
+.grid-choice-category{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* 3 colonnes */
+  gap: 2em;
+  /* Espacement entre les éléments de la grille */
+  margin: 3%;
+  /* Utilisation de marges relatives */
+}
+
+.grid__film {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.grid__film--img {
+  border: 1px solid #ccc;
+  border-radius: 0.8em;
+  /* Coins arrondis */
+  width: 20em;
+}
+
 
 .overlay {
-    position: absolute; /* Positionnement absolu pour superposer le div sur l'image */
-    bottom: 70%; /* Aligner le div en bas */
-    width: 100%; /* Prendre toute la largeur de l'image */
-    background-color: rgba(0, 0, 0, 0.3); /* Fond semi-transparent foncé */
-    padding: 10% 5%; /* Espacement intérieur du div */
-    box-sizing: border-box;
+  position: absolute;
+  /* Positionnement absolu pour superposer le div sur l'image */
+  bottom: 17em;
+  /* Aligner le div en bas */
+  width: 20em;
+  /* Prendre toute la largeur de l'image */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Fond semi-transparent foncé */
+  padding: 5% 5%;
+  /* Espacement intérieur du div */
+  box-sizing: border-box;
 }
 
-.overlay h3 {
-    color: white; /* Couleur du texte blanc */
-    margin: 0; /* Réinitialiser les marges */
+.overlay__btn{
+  margin-top: 1.7em;
+  margin-left: 15em;
+}
 
-    
+
+.overlay__h3 {
+  color: white;
+  font-size: x-large;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  /* Couleur du texte blanc */
+  margin: 0;
+  /* Réinitialiser les marges */
+}
+
+.modal-btn{
+  padding: 10px 14px;
+  font-size: 18px;
+  margin: 100px auto;
+  display: block;
+  min-width: 150px;
+  cursor: pointer;
+
+}
+
+.modal-container{
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 120vw;
+  overflow: auto;
+  transition: visibility 0.4s;
+}
+
+.modal-container.active{
+  visibility: visible;
+}
+
+.overlay-modal{
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #333333d3;
+  transition: opacity 0.4s 0.2s ease-out;
+}
+.modal-container.active .overlay-modal{
+  opacity: 1;
+  transition: opacity 0.4s  ease-out;
+}
+
+.modal {
+  opacity: 0;
+  width: 95%;
+  max-width: 600px;
+  min-width: 30px;
+  max-height: fit-content;
+  padding:30px;
+  background: #fff;
+  border-radius: 5px;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, calc(-50% - 50px));
+  transition: opacity 0.4s  ease-out,
+  transform 0.4s ease-out;
+}
+
+.modal-container.active .modal{
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.4s 0.2s ease-out,
+  transform 0.4s 0.2s ease-out;
+}
+
+.close-modal{
+  padding: 8px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  background: rgb(144, 34, 34);
+  color: #fff;
+}
+
+
+.modal-grid{
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-template-rows: 70px 40px 50px auto auto auto;
+  gap:  10px;
+
+}
+
+.modal-title{
+  grid-column: 1 / span 3 ;
+  grid-row: 1 ;
+}
+
+.modal-img{
+  width: 9em;
+  grid-column: 4 ;
+  grid-row: 1 / span 3;
+}
+
+.modal-year{
+  grid-column: 1 ;
+  grid-row: 2 ;
+}
+
+.modal-genres{
+  grid-column: 2 ;
+  grid-row: 2 ;
+}
+
+.modal-duration{
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.modal-country{
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.modal-directors{
+  grid-column: 1 / span 2;
+  grid-row: 4;
+}
+
+.modal-long-description{
+  grid-column: 1 / span 4;
+  grid-row: 5 ;
+}
+
+.modal-actors{
+  grid-column: 1 / span 2;
+  grid-row: 6;
+}
+
+.modal-rated{
+  grid-column: 3;
+  grid-row: 6;
+}
+
+.modal-score{
+  grid-column: 4;
+  grid-row: 6;
+  text-align: right;
 }

@@ -4,36 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="style.css" rel="stylesheet">
-    <script src="scripts.js" defer></script>
+    <script type="module" src="apiFecther.js" defer></script>
+    <script type="module" src="htmlBuilder.js" defer></script>
+    <script type="module" src="actionScript.js" defer></script>
     <title>JustStreamIt</title>
 </head>
 <header>
     <div class="header-title">
-        <img src="images\logo.png" class="logo">
-        <h1 class="">Vidéos à la demande</h1>
+        <img src="images\logo.png" class="header-title__logo">
+        <h1 class="">Videos on demand</h1>
         <nav class="search-bar">
-            <input type="text" placeholder="Rechercher un film...">
-            <button type="submit">Rechercher</button>
+            <input class="search-bar__input" type="text" placeholder="Find a movie...">
+            <button class="btn"type="submit">Search</button>
         </nav>
     </div>
 </header>
 <body>
-    <h2>The Best film Ever</h2>
+    <h2>Best Movies Ever</h2>
     <div class="best-film">
-        <img src="" alt="affiche du film">
+        <img class="best-film__img" src="" alt="affiche du film">
         <div class="film-info">
-            <h3>Nom du film</h3>
+            <h3 class="film-info__h3"></h3>
             <p id="film-description"></p>
-            <button>Details</button>
         </div>
     </div>
-    <h2>Les films les plus apprécier</h2>
-    <div class="grid-apreciate-film">
-        
-        
-        
-    </div>
+    <section>
+        <h2>The most popular movies</h2>
+        <div class="grid-apreciate-film"> </div>
+    </section>
+    <section>
+        <h2>Action</h2>
+        <div class="grid-apreciate-film__category"></div>
+    </section>
+    <section>
+        <h2>Comedy</h2>
+        <div class="grid-apreciate-film__category2"></div>
+    </section>
+    <section>
+        <label for="genre-select">Chose a genre: </label>
+        <select id="genre-select"></select>
+        <div class="grid-choice-category"></div>
+    </section>
 
+
+
+
+    <div class="modal-container">
+        <div class="overlay-modal modal-trigger"></div>
+        <div class="modal modal-grid">
+            <h1 class="modal-title"></h1>
+            <img class="modal-img" src="">
+            <h4 class="modal-year"></h4>
+            <h4 class="modal-genres"></h4>
+            <h4 class="modal-rated"></h4>
+            <h4 class="modal-duration"></h4>
+            <h4 class="modal-score"></h4>
+            <h5 class="modal-country"></h5>
+            <p class="modal-directors"></p>
+            <p class="modal-long-description"></p>
+            <p class="modal-actors"></p>
+            <button aria-label="close modal" class="close-modal modal-trigger">X</button>
+        </div>
+    </div>
+    
     
     
     
