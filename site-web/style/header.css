@@ -1,0 +1,102 @@
+
+
+.header-title {
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 80px;
+    color: white;
+    font-size: larger;
+    background: #9A8C98;
+    padding: 0.4em;
+    display: flex;
+    align-items: center;
+    z-index: 999;
+
+}
+
+.header-title h1{
+    margin-left: 150px;
+}
+
+.header-title__logo {
+    margin-right: 5%;
+    width: 6em;
+    height: auto;
+}
+
+
+
+.genre-select{
+    display: flex;
+    margin-left: 400px;
+}
+
+.genre-select label {
+    display: flex;
+    font-size: 20px;
+    margin-right: 20px;
+    margin-bottom: 2px;
+    align-items: center;
+}
+
+.genre-select select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #463a44;
+    cursor: pointer;
+    appearance: none; /* Supprime les flèches de sélection par défaut */
+}
+
+.genre-select select:hover {
+    border-color: #463a44;
+}
+
+.genre-select select:focus {
+    outline: none;
+    border-color: #333;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 480px) {
+    .header-title{
+        margin:0;
+        display: flex;
+        flex-direction: row;
+        height: 80px; 
+        font-size: medium; 
+        justify-content: center; 
+        padding: 0;
+        align-items: center;
+        justify-self: center
+    }
+    .header-title h1 {
+        display: none; /* Ajuster la taille de la police si nécessaire */
+    }
+
+    /* Styles pour .header-title__logo */
+    .header-title__logo {
+    
+        margin-right: 30px; /* Ajuster la marge pour s'adapter à l'écran plus petit */
+        width: 5em; /* Ajuster la largeur si nécessaire */
+        height: auto; /* Garder la hauteur automatique pour maintenir les proportions */
+    }
+    .genre-select {
+        margin-left: 10px; /* Ajuster la marge pour s'adapter à l'écran plus petit */
+    }
+
+    /* Ajuster la taille de la police pour .genre-select label */
+    .genre-select label {
+        font-size: 16px; /* Ajuster la taille de la police pour s'adapter à l'écran plus petit */
+    }
+
+    /* Ajuster la taille de la police et le padding pour .genre-select select */
+    .genre-select select {
+        padding: 6px; /* Ajuster le padding pour s'adapter à l'écran plus petit */
+        font-size: 14px; /* Ajuster la taille de la police pour s'adapter à l'écran plus petit */
+    }
+}

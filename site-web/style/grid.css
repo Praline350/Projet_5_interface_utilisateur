@@ -1,0 +1,76 @@
+.grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2em;
+    margin: 3%;
+
+}
+
+.grid__film {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.grid__film--img {
+  border: 1px solid #ccc;
+  border-radius: 0.8em;
+  /* Coins arrondis */
+  width: 16em;
+}
+
+
+.overlay {
+  position: absolute;
+  /* Positionnement absolu pour superposer le div sur l'image */
+  bottom: 11em;
+  /* Aligner le div en bas */
+  width: 16em;
+  /* Prendre toute la largeur de l'image */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Fond semi-transparent foncé */
+  padding: 5% 5%;
+  /* Espacement intérieur du div */
+  box-sizing: border-box;
+}
+
+.overlay__btn{
+  margin-top: 1.7em;
+  margin-left: 12em;
+}
+
+
+.overlay__h3 {
+  color: white;
+  font-size: x-large;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  /* Couleur du texte blanc */
+  margin: 0;
+  /* Réinitialiser les marges */
+}
+
+.see-more-btn{
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: none;
+    
+}
+
+@media  screen and (max-width: 480px) {
+    .grid{
+        display: flex;
+        flex-direction: column;
+    }
+    .grid > *:nth-child(n+3) {
+        display: none;
+    }
+    .see-more-btn{
+        display: block;
+    }
+    
+}

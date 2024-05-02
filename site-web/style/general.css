@@ -1,0 +1,145 @@
+
+
+.btn{
+    padding: 0.5em 0.75em;
+    background-color: #463a44;
+    color: white;
+    border: none;
+    border-radius: 0.4em;
+    margin-left: 1em;
+}
+
+h2 {
+    display: block;
+    border-bottom: 3px solid #463a44;
+    border-top: 3px solid #463a44;
+    font-size: xx-large;
+    text-align: center;
+    margin-left: 40%;
+    margin-right: 40%;
+    padding: 5px;
+}
+
+h1{
+    text-align: center;
+}
+
+.best-film--title{
+  padding-top: 140px;
+}
+
+.best-film {
+  position: relative;
+  margin-left: 5%;
+  margin-right: 5%;
+  border: 0.4em solid #9A8C98;
+  /* Utilisation de bordure relative */
+  border-radius: 1em;
+  padding: 2em;
+  margin-top: 1em;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto auto;
+  align-items: center;
+}
+
+.best-film__img {
+  grid-column: 1;
+  grid-row: 1/span 2;
+  width: 15em;
+  margin-left: 1em;
+  /* Utilisation de largeur relative */
+  height: auto;
+}
+
+.film-info {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  grid-column: 2/span 2;
+  grid-row: 1;
+  margin-top: 1em;
+  margin-right: 3em;
+  /* Utilisation de marges relatives */
+}
+
+.film-info__h3 {
+  font-size: xx-large;
+  margin-bottom: 2em;
+  margin-top: 1em;
+  /* Utilisation de marges relatives */
+}
+
+#film-description{
+  margin-bottom: 4em;
+}
+
+.film-info__btn {
+  position: relative;
+  font-size: 0.9em;
+  padding: 1em 2em;
+  margin-bottom: 1em;
+  margin-top: 3em;
+  margin-left: 45em;
+  /* Utilisation de marges relatives */
+}
+
+@media screen and (max-width: 480px) {
+    h2{
+        display: flex;
+        justify-content: center;
+        margin: 5px;
+        margin-top: 5px;
+        
+
+    }
+    .best-film--title{
+        padding-top: 100px;
+    }
+    .best-film{
+        padding: 5px;
+        margin:10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        
+        
+    }
+    .best-film__img{
+        margin: 0;
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+    .film-info{
+        margin: auto;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .film-info__h3{
+        padding: 0;
+        margin: auto;
+    }
+    #film-description{
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        margin:auto;
+        margin-bottom: 5px;
+        text-align: center;
+        gap: 20px;
+    }
+    .film-info__btn{
+        padding: 10px;
+        margin:auto;
+    }
+    
+    
+
+}
