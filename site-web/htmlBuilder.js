@@ -14,12 +14,24 @@ import {
 
 const baseURL = 'http://127.0.0.1:8000/api/v1/titles';
 const genresUrl = 'http://127.0.0.1:8000/api/v1/genres';
-const categoryAction = `${baseURL}/?genre=action&imdb_score_min=8.5`;
-const categoryComedy = `${baseURL}/?genre=comedy&imdb_score_min=8.5`;
+const categoryAction = `${baseURL}/?genre=action&sort_by=-imdb_score`;
+const categoryComedy = `${baseURL}/?genre=comedy&sort_by=-imdb_score`;
 const gridClassCategoryAction = "grid-apreciate-film__category";
 const gridClassCategoryComedy = "grid-apreciate-film__category2";
 const gridClassCategoryChoice = "grid-choice-category"
 
+
+async function createPoster(filmUrl){
+    const imageElement = document.createElement('img')
+    imageElement.classList.add("grid__film--img", "modal-trigger")
+    imageElement.alt = 'affiche du film';
+    imageElement.dataset.filmUrl = filmUrl
+    imageElement.addEventListener("click", async (event)=>{
+        const clickedFilmUrl = event.target.dataset.filmUrl;
+        await createModal(clickedFilmUrl)
+    });
+    return imageElement
+}
 
 
 
@@ -40,7 +52,6 @@ async function createDetailsBtn(filmUrl){
 }
 
 async function createModal(filmUrl){
-    console.log(filmUrl)
     const modalTriggers = document.querySelectorAll('.modal-trigger');
     modalTriggers.forEach(trigger => 
     trigger.addEventListener("click", toggleModal)),
@@ -93,30 +104,35 @@ async function createFilmGrid(urlsFilms, gridClass) {
         }
         const filmDiv = document.createElement('div');
         filmDiv.classList.add('grid__film');
-        const imgElement = document.createElement('img');
-        imgElement.classList.add("grid__film--img")
+        const imgElement = await createPoster(urlsFilms[i])
         imgElement.src = posterUrl; 
-        imgElement.alt = 'affiche du film';
         const overlayDiv = document.createElement('div');
         overlayDiv.classList.add('overlay');
         const detailBtnElement = await createDetailsBtn(urlsFilms[i]);
         const h3Element = document.createElement('h3');
         h3Element.classList.add("overlay__h3")
         h3Element.textContent = title;
+        const viewMoreBtn = document.createElement('button')
+        viewMoreBtn.classList.add('btn')
+        viewMoreBtn.textContent = "See more"
+
 
         overlayDiv.appendChild(h3Element);
         filmDiv.appendChild(imgElement);
         filmDiv.appendChild(overlayDiv);
         overlayDiv.appendChild(detailBtnElement)
         gridContainer.appendChild(filmDiv);
+        
 
         filmsAdded ++;
     }
+    
 }
 
 async function createChoiceGenres(){
     const genres = await getGenres();
     const selectElement = document.getElementById('genre-select');
+    const titleGenreElement = document.getElementById('genre-selector');
     for (let i = 0; i < genres.length; i++){
         const optionElement = document.createElement('option')
         optionElement.textContent = genres[i]
@@ -124,8 +140,11 @@ async function createChoiceGenres(){
     };
     selectElement.addEventListener('change',async(event)=>{
         const genreName = event.target.value;
-        const categoryFilmUrls = await getBestCategoryFilm(`${baseURL}/?genre=${genreName}&imdb_score_min=8.5`)
+        const categoryFilmUrls = await getBestCategoryFilm(`${baseURL}/?genre=${genreName}&sort_by=-imdb_score`)
         const gridContainer = document.querySelector(`.${gridClassCategoryChoice}`);
+        console.log(genreName)
+        titleGenreElement.textContent = genreName
+        gridContainer.scrollIntoView({ behavior: 'smooth' });
         gridContainer.innerHTML = '';
         createFilmGrid(categoryFilmUrls, gridClassCategoryChoice)
     });
@@ -182,10 +201,14 @@ async function displayCategoryFilm(category, gridClass){
 }
 
 
+
+
+
 rotateBestFilm()
 displayApreciateFilm()
 displayCategoryFilm(categoryAction, gridClassCategoryAction)
 displayCategoryFilm(categoryComedy, gridClassCategoryComedy)
 createChoiceGenres()
+
 
 

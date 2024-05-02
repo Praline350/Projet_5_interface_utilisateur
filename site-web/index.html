@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style.css" rel="stylesheet">
+    <link href="style/general.css" rel="stylesheet">
+    <link href="style/grid.css" rel="stylesheet">
+    <link href="style/header.css" rel="stylesheet">
+    <link href="style/modal.css" rel="stylesheet">
     <script type="module" src="apiFecther.js" defer></script>
     <script type="module" src="htmlBuilder.js" defer></script>
     <script type="module" src="actionScript.js" defer></script>
@@ -12,15 +15,17 @@
 <header>
     <div class="header-title">
         <img src="images\logo.png" class="header-title__logo">
-        <h1 class="">Videos on demand</h1>
+        <h1 class="">Find Your Movie</h1>
         <nav class="search-bar">
-            <input class="search-bar__input" type="text" placeholder="Find a movie...">
-            <button class="btn"type="submit">Search</button>
+            <div class="genre-select">
+                <label for="genre-select">Chose a genre: </label>
+                <select id="genre-select"></select>
+            </div>
         </nav>
     </div>
 </header>
 <body>
-    <h2>Best Movies Ever</h2>
+    <h2 class="best-film--title">Best Movies Ever</h2>
     <div class="best-film">
         <img class="best-film__img" src="" alt="affiche du film">
         <div class="film-info">
@@ -30,24 +35,25 @@
     </div>
     <section>
         <h2>The most popular movies</h2>
-        <div class="grid-apreciate-film"> </div>
+        <div class="grid grid-apreciate-film"> </div>
+        <button class="btn see-more-btn">See More</button>
     </section>
     <section>
         <h2>Action</h2>
-        <div class="grid-apreciate-film__category"></div>
+        <div class="grid grid-apreciate-film__category"></div>
+        <button class="btn see-more-btn">See More</button>
     </section>
     <section>
         <h2>Comedy</h2>
-        <div class="grid-apreciate-film__category2"></div>
+        <div class="grid grid-apreciate-film__category2"></div>
+        <button class="btn see-more-btn">See More</button>
     </section>
-    <section>
-        <label for="genre-select">Chose a genre: </label>
-        <select id="genre-select"></select>
-        <div class="grid-choice-category"></div>
+    <section >
+        <h1>Your favorite genre :</h1>
+        <h2 id="genre-selector">Choose in navigation bar</h2>
+        <div class="grid grid-choice-category"></div>
+        <button class="btn see-more-btn">See More</button>
     </section>
-
-
-
 
     <div class="modal-container">
         <div class="overlay-modal modal-trigger"></div>

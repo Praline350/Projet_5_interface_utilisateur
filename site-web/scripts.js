@@ -178,3 +178,30 @@ async function createFilmGrid(urlsFilms, gridClass) {
 })();
 
 
+async function getFilmUserSearch(){
+    const submitBtn = document.querySelector('.search-btn')
+    const inputElement = document.querySelector('.search-bar__input')
+    
+    // Ajouter l'écouteur d'événements pour le clic sur le bouton
+    submitBtn.addEventListener('click', async() =>{
+        const userInput = inputElement.value;
+        const filmUrl =  await getFilmWithTitle(userInput)
+        if (!filmUrl) {
+            // Afficher un message d'erreur si le film n'est pas trouvé
+            alert("Film non trouvé. Veuillez réessayer avec un autre titre.");
+        } else {
+            await createModal(filmUrl);
+        }
+        
+    });
+}
+
+async function getFilmWithTitle(title){
+    const response = await fetch(`${baseURL}/?title_contains=${title}`)
+    const data = await response.json();
+    const filmUrl = data.results[0].url;
+    return filmUrl
+}
+
+//<input class="search-bar__input" type="text" placeholder="Find a movie (Beta)"></input>
+//<button class="btn search-btn modal-trigger" type="submit">Search</button>
