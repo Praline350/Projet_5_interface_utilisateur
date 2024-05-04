@@ -100,3 +100,41 @@
         font-size: 14px; /* Ajuster la taille de la police pour s'adapter à l'écran plus petit */
     }
 }
+
+@media screen and (min-width: 481px) and (max-width: 1080px){
+    .header-title{
+        margin:0;
+        display: flex;
+        flex-direction: row;
+        height: 100px; 
+        font-size: medium; 
+        justify-content: center; 
+        padding: 0;
+        align-items: center;
+        justify-self: center;
+        gap: 20px;
+    }
+    .header-title h1{
+        margin-left: 15px;
+    }
+    .header-title__logo {
+    
+        margin: 10px; 
+        width: 8em; 
+        height: auto; 
+    }
+    .genre-select {
+        margin-left: 10px; 
+    }
+
+
+    .genre-select label {
+        margin-left: 15px;
+        font-size: 16px; 
+    }
+
+    .genre-select select {
+        padding: 6px; 
+        font-size: 14px; 
+    }
+}

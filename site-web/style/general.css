@@ -53,7 +53,7 @@ h1{
 }
 
 .film-info {
-  position: absolute;
+  position: relative;
   bottom: 0;
   right: 0;
   grid-column: 2/span 2;
@@ -75,12 +75,13 @@ h1{
 }
 
 .film-info__btn {
-  position: relative;
+  display: block;
   font-size: 0.9em;
   padding: 1em 2em;
   margin-bottom: 1em;
-  margin-top: 3em;
-  margin-left: 45em;
+  margin-top: 5em;
+  margin-left: 30em;
+  
   /* Utilisation de marges relatives */
 }
 
@@ -141,5 +142,37 @@ h1{
     }
     
     
+
+}
+
+@media screen and (min-width: 481px) and (max-width: 1080px){
+
+  .best-film--title{
+    padding-top: 100px;
+  }
+  .film-info{
+    position: relative;
+  }
+  .best-film{
+    padding: 5px;
+    margin:10px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+} 
+  .film-info__btn{
+    display: block;
+    margin:auto;
+    margin-top: 60px;
+    margin-bottom:10px ;
+  }
+  .best-film__img{
+    margin-right: 20px;
+  }
+  h2{
+    margin-left: 20%;
+    margin-right: 20%;
+
+  }
 
 }

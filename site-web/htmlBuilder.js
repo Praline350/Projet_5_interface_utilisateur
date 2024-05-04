@@ -93,6 +93,7 @@ function toggleModal(){
 async function createFilmGrid(urlsFilms, gridClass) {
     const gridContainer = document.querySelector(`.${gridClass}`);
     let filmsAdded = 0;
+    let indexFilmGrid = 1;
     for (let i = 0; i < urlsFilms.length; i++) {
         if(filmsAdded >= 6){
             break;
@@ -104,17 +105,18 @@ async function createFilmGrid(urlsFilms, gridClass) {
         }
         const filmDiv = document.createElement('div');
         filmDiv.classList.add('grid__film');
+        filmDiv.classList.add(`box${indexFilmGrid}`);
         const imgElement = await createPoster(urlsFilms[i])
         imgElement.src = posterUrl; 
         const overlayDiv = document.createElement('div');
         overlayDiv.classList.add('overlay');
         const detailBtnElement = await createDetailsBtn(urlsFilms[i]);
         const h3Element = document.createElement('h3');
-        h3Element.classList.add("overlay__h3")
+        h3Element.classList.add("overlay__h3");
         h3Element.textContent = title;
-        const viewMoreBtn = document.createElement('button')
-        viewMoreBtn.classList.add('btn')
-        viewMoreBtn.textContent = "See more"
+        const viewMoreBtn = document.createElement('button');
+        viewMoreBtn.classList.add('btn');
+        viewMoreBtn.textContent = "See more";
 
 
         overlayDiv.appendChild(h3Element);
@@ -125,6 +127,7 @@ async function createFilmGrid(urlsFilms, gridClass) {
         
 
         filmsAdded ++;
+        indexFilmGrid ++;
     }
     
 }
@@ -158,6 +161,12 @@ async function displayBestFilm(filmUrl){
     const filmTitleElement = document.querySelector(".film-info h3");
     const filmDescritpionElement = document.getElementById('film-description');
     const filmImageElement = document.querySelector(".best-film img");
+    filmImageElement.classList.add('modal-trigger');
+    filmImageElement.dataset.filmUrl = filmUrl;
+    filmImageElement.addEventListener("click", async (event)=>{
+        const clickedFilmUrl = event.target.dataset.filmUrl;
+        await createModal(clickedFilmUrl)
+    });
     filmDescritpionElement.innerText = filmDescritpion;
     filmTitleElement.innerText = filmTitle;
     filmImageElement.setAttribute("src", imageUrl)
@@ -200,15 +209,42 @@ async function displayCategoryFilm(category, gridClass){
     createFilmGrid(categoryFilmUrls, gridClassCategory)
 }
 
-
-
-
+async function seeMorebtn() {
+    const btnElements = document.querySelectorAll('.see-more-btn');
+    btnElements.forEach((btnElement) => {
+        btnElement.addEventListener('click', () => {
+            const gridClassElement = btnElement.previousElementSibling;
+            const gridClass = `.grid.${gridClassElement.classList[1]}`;
+            const parentElement = document.querySelector(gridClass);
+            const targetChild = Array.from(parentElement.children)
+                .find(child => child.classList.contains('grid__film') && child.classList.contains('box3'));
+            if (targetChild) {
+                const targetChildIndex = Array.from(parentElement.children).indexOf(targetChild);
+                for (let i = targetChildIndex + 1; i < parentElement.children.length; i++) {
+                    const child = parentElement.children[i];
+                    const isMediaQueryMatch = window.matchMedia("(min-width: 481px) and (max-width: 1080px)").matches;
+                    const isMediaQueryChild = isMediaQueryMatch && ['box5', 'box6'].includes(child.classList[1]);
+                    const isDefaultChild = !isMediaQueryMatch && ['box3', 'box4', 'box5', 'box6'].includes(child.classList[1]);
+                    
+                    if ((isMediaQueryChild || isDefaultChild) && child.classList.contains('grid__film')) {
+                        child.style.display = child.style.display === 'flex' ? 'none' : 'flex';
+                        parentElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    btnElement.textContent = btnElement.textContent === 'See More' ? 'See Less' : 'See More';
+                }
+            }
+        });
+    });
+}
+       
+            
 
 rotateBestFilm()
 displayApreciateFilm()
 displayCategoryFilm(categoryAction, gridClassCategoryAction)
 displayCategoryFilm(categoryComedy, gridClassCategoryComedy)
 createChoiceGenres()
+seeMorebtn()
 
 
 

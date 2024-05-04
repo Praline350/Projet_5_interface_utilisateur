@@ -66,11 +66,31 @@
         display: flex;
         flex-direction: column;
     }
-    .grid > *:nth-child(n+3) {
-        display: none;
+    .box3,
+    .box4,
+    .box5,
+    .box6{
+      display: none;
     }
+    
     .see-more-btn{
         display: block;
     }
     
+}
+@media screen and (min-width: 481px) and (max-width: 1080px){
+  .grid{
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr) ;
+  }
+  .box5,
+  .box6{
+    display: none;
+  }
+  .see-more-btn{
+    display: block;
+  }
+  .box4{
+    display: flex;
+  }
 }
