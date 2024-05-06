@@ -27,7 +27,7 @@ async function getGenres(){
             break;
         }
     }
-    console.log(genres)
+    //console.log(genres)
    return genres;
     
 }
