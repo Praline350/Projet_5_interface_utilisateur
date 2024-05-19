@@ -22,29 +22,31 @@ const gridClassCategoryChoice = "grid-choice-category"
 
 
 async function createPoster(filmUrl){
-    const imageElement = document.createElement('img')
-    imageElement.classList.add("grid__film--img", "modal-trigger")
+    // créer un element img et stock la data du film
+    // Args : Url du film
+
+    const imageElement = document.createElement('img');
+    imageElement.classList.add("grid__film--img", "modal-trigger");
     imageElement.alt = 'affiche du film';
-    imageElement.dataset.filmUrl = filmUrl
+    imageElement.dataset.filmUrl = filmUrl;
     imageElement.addEventListener("click", async (event)=>{
         const clickedFilmUrl = event.target.dataset.filmUrl;
-        await createModal(clickedFilmUrl)
+        await createModal(clickedFilmUrl);
     });
     return imageElement
 }
 
-
-
 async function createDetailsBtn(filmUrl){
+    // création du boutton detail du film et stock la data du film
+    // Args : Url du film
+
     const detailBtnElement = document.createElement('button');
     detailBtnElement.classList.add('btn', 'overlay__btn', 'modal-trigger');
     detailBtnElement.textContent = "Details";
-    //console.log(filmUrl)
-    detailBtnElement.dataset.filmUrl = filmUrl
-    //console.log(detailBtnElement)
+    detailBtnElement.dataset.filmUrl = filmUrl;
     detailBtnElement.addEventListener('click',async (event) =>{
         const clickedFilmUrl = event.target.dataset.filmUrl;
-        await createModal(clickedFilmUrl)
+        await createModal(clickedFilmUrl);
         
 
     }); // Ajout de l'écouteur d'événements
@@ -52,13 +54,17 @@ async function createDetailsBtn(filmUrl){
 }
 
 async function createModal(filmUrl){
+    // Affiche la modal
+
     const modalTriggers = document.querySelectorAll('.modal-trigger');
     modalTriggers.forEach(trigger => 
     trigger.addEventListener("click", toggleModal)),
-    createModalInfos(filmUrl)
+    createModalInfos(filmUrl);
 } 
 
 async function createModalInfos(filmUrl){
+    // Insère les info du film dans la modal
+
     const filmInfos = await getFilmInfosModal(filmUrl);
     const titleElement = document.querySelector(".modal-title");
     titleElement.textContent = filmInfos.title;
@@ -67,31 +73,34 @@ async function createModalInfos(filmUrl){
     const genreElement = document.querySelector('.modal-genres');
     genreElement.textContent = filmInfos.genres.join(", ");
     const posterElement = document.querySelector('.modal-img');
-    posterElement.src = filmInfos.poster
-    const yearElement  = document.querySelector('.modal-year')
-    yearElement.textContent = filmInfos.year
+    posterElement.src = filmInfos.poster;
+    const yearElement  = document.querySelector('.modal-year');
+    yearElement.textContent = filmInfos.year;
     const scoreElement = document.querySelector(".modal-score")
     scoreElement.textContent = `Score Imdb : ${filmInfos.score}`;
-    const ratedElement = document.querySelector('.modal-rated')
-    ratedElement.textContent = filmInfos.rated
-    const directorsElement = document.querySelector('.modal-directors')
+    const ratedElement = document.querySelector('.modal-rated');
+    ratedElement.textContent = filmInfos.rated;
+    const directorsElement = document.querySelector('.modal-directors');
     directorsElement.textContent = `Réalisé par : \n${filmInfos.directors}`;
     const actorsElement = document.querySelector('.modal-actors');
     actorsElement.textContent = `Avec : \n${filmInfos.actors}`;
-    const durationElement = document.querySelector('.modal-duration')
-    durationElement.textContent = `${filmInfos.duration} Minutes`
-    const countryElement = document.querySelector('.modal-country')
-    countryElement.textContent = filmInfos.country
-    
+    const durationElement = document.querySelector('.modal-duration');
+    durationElement.textContent = `${filmInfos.duration} Minutes`;
+    const countryElement = document.querySelector('.modal-country');
+    countryElement.textContent = filmInfos.country;   
 }
 
-
 function toggleModal(){
+    // Active la modal
+
     const modalContainer = document.querySelector(".modal-container");
-    modalContainer.classList.toggle('active')
+    modalContainer.classList.toggle('active');
 }
 
 async function createFilmGrid(urlsFilms, gridClass) {
+    // Creer une grille de 6 film 
+    // Args : Liste d'url de film, Class  de la grille à créer
+
     const gridContainer = document.querySelector(`.${gridClass}`);
     let filmsAdded = 0;
     let indexFilmGrid = 1;
@@ -99,15 +108,15 @@ async function createFilmGrid(urlsFilms, gridClass) {
         if(filmsAdded >= 6){
             break;
         }
-        const title = await getFilmtitle(urlsFilms[i])
-        const posterUrl = await getFilmPoster(urlsFilms[i])
+        const title = await getFilmtitle(urlsFilms[i]);
+        const posterUrl = await getFilmPoster(urlsFilms[i]);
         if (!title || !await ressourcesVerif(posterUrl)){
             continue
         }
         const filmDiv = document.createElement('div');
         filmDiv.classList.add('grid__film');
         filmDiv.classList.add(`box${indexFilmGrid}`);
-        const imgElement = await createPoster(urlsFilms[i])
+        const imgElement = await createPoster(urlsFilms[i]);
         imgElement.src = posterUrl; 
         const overlayDiv = document.createElement('div');
         overlayDiv.classList.add('overlay');
@@ -119,43 +128,45 @@ async function createFilmGrid(urlsFilms, gridClass) {
         viewMoreBtn.classList.add('btn');
         viewMoreBtn.textContent = "See more";
 
-
         overlayDiv.appendChild(h3Element);
         filmDiv.appendChild(imgElement);
         filmDiv.appendChild(overlayDiv);
         overlayDiv.appendChild(detailBtnElement)
         gridContainer.appendChild(filmDiv);
         
-
         filmsAdded ++;
         indexFilmGrid ++;
     }
-    
 }
 
 async function createChoiceGenres(){
+    // creation de la selection de genre
+
     const genres = await getGenres();
     const selectElement = document.getElementById('genre-select');
     const titleGenreElement = document.getElementById('genre-selector');
     for (let i = 0; i < genres.length; i++){
         const optionElement = document.createElement('option')
-        optionElement.textContent = genres[i]
-        selectElement.appendChild(optionElement)
+        optionElement.textContent = genres[i];
+        selectElement.appendChild(optionElement);
     };
     selectElement.addEventListener('change',async(event)=>{
         const genreName = event.target.value;
-        const categoryFilmUrls = await getBestCategoryFilm(`${baseURL}/?genre=${genreName}&sort_by=-imdb_score`)
+        const categoryFilmUrls = await getBestCategoryFilm(`${baseURL}/?genre=${genreName}&sort_by=-imdb_score`);
         const gridContainer = document.querySelector(`.${gridClassCategoryChoice}`);
-        console.log(genreName)
-        titleGenreElement.textContent = genreName
+        console.log(genreName);
+        titleGenreElement.textContent = genreName;
         gridContainer.scrollIntoView({ behavior: 'smooth' });
         gridContainer.innerHTML = '';
-        createFilmGrid(categoryFilmUrls, gridClassCategoryChoice)
+        createFilmGrid(categoryFilmUrls, gridClassCategoryChoice);
     });
 }
 
 
 async function displayBestFilm(filmUrl){
+    // Affiche les film a la meilleur note
+    // Args : liste d'url des meilleurs film
+
     const filmDescritpion = await getFilmDescription(filmUrl);
     const filmTitle = await getFilmtitle(filmUrl);
     const imageUrl = await getFilmPoster(filmUrl);
@@ -171,7 +182,6 @@ async function displayBestFilm(filmUrl){
     filmDescritpionElement.innerText = filmDescritpion;
     filmTitleElement.innerText = filmTitle;
     filmImageElement.setAttribute("src", imageUrl)
-
     const detailBtnElement = document.createElement('button')
     detailBtnElement.classList.add('btn', 'film-info__btn', 'modal-trigger')
     detailBtnElement.textContent = "Details"
@@ -180,12 +190,13 @@ async function displayBestFilm(filmUrl){
         const clickedFilmUrl = event.target.dataset.filmUrl;
         await createModal(clickedFilmUrl);
     });
-    
     filmDescritpionElement.appendChild(detailBtnElement);
 }
 
 
 async function rotateBestFilm(){
+    // Creer un carousel des meilleurs film
+
     const bestFilmList = await  getBestFilmUrl();
     const filmCount = Math.min(bestFilmList.length, 4);
     let index = 0;
@@ -199,18 +210,25 @@ async function rotateBestFilm(){
 
 
 async function displayApreciateFilm(){
-    const filmApreciateUrls = await getApreciateFilm()
-    const gridClassApreciateFilm = "grid-apreciate-film"
-    createFilmGrid(filmApreciateUrls, gridClassApreciateFilm)
+    // Affiche la grille des film les + aprécié
+
+    const filmApreciateUrls = await getApreciateFilm();
+    const gridClassApreciateFilm = "grid-apreciate-film";
+    createFilmGrid(filmApreciateUrls, gridClassApreciateFilm);
 }
 
 async function displayCategoryFilm(category, gridClass){
-    const categoryFilmUrls = await getBestCategoryFilm(category)
-    const gridClassCategory = gridClass
-    createFilmGrid(categoryFilmUrls, gridClassCategory)
+    // Affiche la grille d'une catégorie
+
+    const categoryFilmUrls = await getBestCategoryFilm(category);
+    const gridClassCategory = gridClass;
+    createFilmGrid(categoryFilmUrls, gridClassCategory);
 }
 
 async function seeMorebtn() {
+    // Permet le boutton pour afficher ou cacher un certain nombre de film pour
+    // les medias queries
+
     const btnElements = document.querySelectorAll('.see-more-btn');
     btnElements.forEach((btnElement) => {
         btnElement.addEventListener('click', () => {
